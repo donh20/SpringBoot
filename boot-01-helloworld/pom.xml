@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.3.4.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <groupId>com.atguigu</groupId>
+    <artifactId>boot-01-helloworld</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <!--
+        自动配置原理：
+        1. 依赖管理，由父项目做依赖管理，开发导入starter场景启动器
+        2. 自动配置
+        比如 Tomcat
+        1. 引入Tomcat依赖
+        2. 配置Tomcat
+        比如 SpringMVC
+        1. 引入SpringMVC全套组件
+        2. 自动配置好SpringMVC的常用组件
+    -->
+
+    <!--
+        导入starter,固定写法
+        每一个springboot父项目,一般作用一般都是做依赖管理,子项目只要继承它,就不需要再写版本号了
+        比如这里,springboot父项目的版本号是2.3.4
+        点进去看,发现他还有个父项目
+        <parent>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-dependencies</artifactId>
+            <version>2.3.4.RELEASE</version>
+        </parent>
+        里面有一个properties,几乎声明了所有开发中常用的依赖的版本号,自动版本仲裁机制
+        如果不满足使用场景,比如mysql,默认是8.0.21,如果需要连接mysql5版本,则需要独立声明mysql版本
+        自定义修改版本号:
+        1. 查看spring-boot-dependencies里面规定当前依赖的版本用的key
+        2. 在当前项目里重写配置
+        <properties>
+            <mysql.version>5.1.43</mysql.version>
+         </properties>
+
+        总结:
+        1、引入依赖默认都可以不写版本
+        2、引入非版本仲裁的jar，要写版本号。
+    -->
+
+
+    <properties>
+        <mysql.version>5.1.43</mysql.version>
+    </properties>
+
+    <dependencies>
+        <!--只需要添加一个依赖即可,web场景启动器-->
+        <!--
+            在using springboot官方文档中
+            https://docs.spring.io/spring-boot/docs/current/reference/html/using-spring-boot.html
+            1、见到很多 spring-boot-starter-* ： *代表某种场景
+            2、只要引入starter，这个场景的所有常规需要的依赖我们都自动引入
+            3、SpringBoot所有支持的场景
+            https://docs.spring.io/spring-boot/docs/current/reference/html/using-spring-boot.html#using-boot-starter
+            4、官方建议我们如果自己开发场景启动器,最好不要以spring-boot-starter-* 开头
+            所以未来我们见到的  *-spring-boot-starter 都是第三方为我们提供的简化开发的场景启动器。
+            5、每一个场景启动器(所有场景启动器)最底层的依赖都是spring-boot-starter
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter</artifactId>
+                <version>2.3.4.RELEASE</version>
+                <scope>compile</scope>
+            </dependency>
+        -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!--
+        ● 各种配置拥有默认值
+          ○ 默认配置最终都是映射到某个类上，如：MultipartProperties
+          ○ 配置文件的值最终会绑定每个类上，这个类会在容器中创建对象
+        ● 按需加载所有自动配置项
+          ○ 非常多的starter
+          ○ 引入了哪些场景这个场景的自动配置才会开启
+          ○ SpringBoot所有的自动配置功能都在 spring-boot-autoconfigure 包里面
+          (比如org.springframework.boot:spring-boot-autoconfigure下,有很多场景的自动配置
+          看到xxxAutoConfiguration,说明这是这个场景的自动配置类了
+          如果某个场景没有导入场景,这时打开这个类,则会发现有爆红的类,除非引入进来,比如:
+          BatchAutoConfiguration在启动web场景下没引入,所以会爆红,添加spring-boot-starter-batch后,BatchAutoConfiguration.class显示正常)
+
+          这个就是自动配置按需加载的原理
+        -->
+
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-batch</artifactId>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>mysql</groupId>-->
+<!--            <artifactId>mysql-connector-java</artifactId>-->
+<!--        </dependency>-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <version>2.1.6.RELEASE</version>
+        </dependency>
+    </dependencies>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>
