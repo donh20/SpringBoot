@@ -13,11 +13,15 @@ import org.springframework.context.annotation.*;
  * 1. 配置类里面使用@Bean标注方法上给容器注册组件,默认也是单实例的
  * 2. 配置类本身也是组件
  * 3. proxyBeanMethods: 是否代理bean的方法,这个作用很大
- * Full(proxyBeanMethods = true) 配置类里给容器注册组件的方法在外部调用时,每次都会去容器里找组件
- * Lite(proxyBeanMethods = false)容器里不会保留代理对象,每次调用都会产生新的组件
- * 解决的是组件依赖问题:
- * 比如user要养一个pet,给容器中注册组件用户(user),user想要在容器中找到之前注册的pet,如果用false模式,
+ * Full(proxyBeanMethods = true) 配置类里给容器注册组件的方法在外部调用时,每次都会去容器里找组件,保证每个@Bean方法被调用时返回的组件都是单实例的
  *
+ * Lite(proxyBeanMethods = false)容器里不会保留代理对象,每次调用都会产生新的组件,即每个@Bean方法被调用多少次返回的组件都是新创建的
+ * 组件依赖必须使用Full模式默认。其他默认是否Lite模式
+ * 这个设置解决的是组件依赖问题:
+ * 比如user要养一个pet,给容器中注册组件用户(user,user组件依赖了Pet组件),user想要在容器中找到之前注册的pet,如果用false模式,则每次新建一个pet
+ *  ○ 最佳实战
+ *     ■ 配置 类组件之间无依赖关系用Lite模式加速容器启动过程，减少判断
+ *     ■ 配置类组件之间有依赖关系，方法会被调用得到之前单实例组件，用Full模式
  * 4. 还可以通过Import给容器导入组件
  * @Import({User.class, DBHelper.class})
  * 给容器中自动创建出这两个组件,默认组件的名字就是全类名

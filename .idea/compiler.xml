@@ -9,12 +9,14 @@
         <outputRelativeToContentRoot value="true" />
         <module name="boot-01-helloworld" />
         <module name="boot-02-helloworld" />
+        <module name="boot-03-web" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="boot-01-helloworld" target="1.8" />
       <module name="boot-02-helloworld" target="1.8" />
       <module name="boot-03-helloworld" target="1.8" />
+      <module name="boot-03-web" target="1.8" />
       <module name="SpringBoot" target="1.8" />
     </bytecodeTargetLevel>
   </component>
@@ -23,6 +25,7 @@
       <module name="boot-01-helloworld" options="-parameters" />
       <module name="boot-02-helloworld" options="-parameters" />
       <module name="boot-03-helloworld" options="-parameters" />
+      <module name="boot-03-web" options="-parameters" />
     </option>
   </component>
 </project>
