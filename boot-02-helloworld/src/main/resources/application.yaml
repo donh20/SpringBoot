@@ -1,0 +1,27 @@
+person:
+  user-name: "zhangsan\nlisi"
+  age: 34
+  boss: true
+  animal: [阿猫,阿狗]
+  #  score:
+  #    English: 90
+  #    Math: 90
+  score: {English:80,Math:80}
+  salarys:
+    - 9999.9
+    - 8888.8
+  pet:
+    name: 阿狗
+    weight: 99.99
+  all-pets:
+    sick:
+      - {name:阿狗,weight:80}
+      - {name:阿猫,weight:88.88}
+      - name: 阿朱
+        weight: 99.99
+      - name: 阿虫
+        weight: 7.77
+    health:
+      - {name:阿花,weight:180}
+      - {name:阿明,weight:190}
+
