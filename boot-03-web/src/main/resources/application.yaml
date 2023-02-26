@@ -9,15 +9,27 @@
 #  mvc:
 #    static-path-pattern: /res/**
 #在当前项目 + static-path-pattern + 静态资源名 = 静态资源文件夹 下找静态资源
+#注意: 源码里欢迎页是写死的路径,即org.springframework.boot.autoconfigure.web.servlet.WelcomePageHandlerMapping.WelcomePageHandlerMapping
+#要做两个判断
+#1. welcomePage.isPresent() 欢迎页是否存在,这里idea会有bug,需要在修改index位置后用maven重新编译才会生效
+#2. "/**".equals(staticPathPattern),判断staticPathPattern是否是/**
+# 结论: 要使用欢迎页功能,必须是/**
 
-#spring:
-#  mvc:
-#    static-path-pattern: /res/**
+spring:
+  mvc:
+    static-path-pattern: /**
 
 #默认的静态资源路径
-#  resources:
+  resources:
 #    static-locations: [classpath:/haha/]
+    add-mappings: true
+    cache:
+      period: 11000
 
 #自动映射 /webjars/**
 #访问地址：http://localhost:8080/webjars/jquery/3.5.1/jquery.js   后面地址要按照依赖里面的包路径
 #自动映射
+
+
+#
+#
