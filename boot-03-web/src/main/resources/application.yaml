@@ -19,14 +19,14 @@
 
 spring:
   mvc:
-    static-path-pattern: /res/**
+#    static-path-pattern: /**
     hiddenmethod:
       filter:
         enabled: true  #配置成false会禁用所有静态资源
 
   #默认的静态资源路径
   resources:
-#    static-locations: [classpath:/haha/]
+    static-locations: [classpath:/haha/]
     add-mappings: true
     cache:
       period: 11000
