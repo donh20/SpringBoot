@@ -1,4 +1,4 @@
-package com.ncamc.boot.controller.config;
+package com.ncamc.boot.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

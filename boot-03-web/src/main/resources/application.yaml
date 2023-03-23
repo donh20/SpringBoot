@@ -13,14 +13,16 @@
 #要做两个判断
 #1. welcomePage.isPresent() 欢迎页是否存在,这里idea会有bug,需要在修改index位置后用maven重新编译才会生效
 #2. "/**".equals(staticPathPattern),判断staticPathPattern是否是/**
-# 结论: 要使用欢迎页功能,必须是/**
+# 结论:
+#1. 要使用欢迎页功能,必须是/**
+#2. 如果非要自定义静态变量的前缀，访问静态资源是 当前项目 + static-path-pattern + 静态资源名 = 静态资源文件夹下找
 
 spring:
   mvc:
-    static-path-pattern: /**
+    static-path-pattern: /res/**
     hiddenmethod:
       filter:
-        enabled: true
+        enabled: true  #配置成false会禁用所有静态资源
 
   #默认的静态资源路径
   resources:
