@@ -34,8 +34,3 @@ spring:
 #自动映射 /webjars/**
 #访问地址：http://localhost:8080/webjars/jquery/3.5.1/jquery.js   后面地址要按照依赖里面的包路径
 #自动映射
-
-
-#
-#spring.mvc.hiddenmethod.filter
-

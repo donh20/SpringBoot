@@ -174,10 +174,10 @@ xxxxxAutoConfiguration ---> 组件  ---> 这些组件去xxxxProperties里面拿�
 @SpringBootConfiguration
 @EnableAutoConfiguration
 @ComponentScan("com.atguigu.boot")
-public class MainApplication {
+public class Boot01HelloWorldApplication {
     public static void main(String[] args) {
 //        1. 返回IOC容器
-        ConfigurableApplicationContext run = SpringApplication.run(MainApplication.class, args);
+        ConfigurableApplicationContext run = SpringApplication.run(Boot01HelloWorldApplication.class, args);
 //        2. 查看容器里面的组件
 //        String[] names = run.getBeanDefinitionNames();
 //        for (String name : names) {
