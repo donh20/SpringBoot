@@ -94,8 +94,9 @@ import org.springframework.context.annotation.ComponentScan;
 * public void registerBeanDefinitions(AnnotationMetadata metadata, BeanDefinitionRegistry registry) {
 *   register(registry, new PackageImports(metadata).getPackageNames().toArray(new String[0]));
 * }
-* 传入注解的metadata原信息,即本注解标注在哪,都有什么属性值:注解的源信息标注在MainApplication上
-* 即,将指定的一个包下的所有组件导入进来,哪个包呢?是MainApplication所在的包下
+* 传入注解的metadata原信息:即本注解标注在哪;都有什么属性值(注解的源信息标注在MainApplication上)
+* 即,将指定的一个包下的所有组件导入进来
+* (哪个包呢?是MainApplication所在的包下)
 * 获取注解元信息的包名 -> 转为String数组 -> 通过register这个方法，扫描这个包下面的所有符合条件的组件，注册进IOC容器中
 *
 * 然后打开Import(AutoConfigurationImportSelector.class)源码分析

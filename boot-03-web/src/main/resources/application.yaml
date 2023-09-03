@@ -1,5 +1,5 @@
 #https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#web.servlet.spring-mvc.static-content
-#只要静态资源放在类路径下 /static or /META-INF/resources or /public or /resources
+#静态资源放在类路径下 /static or /META-INF/resources or /public or /resources
 #访问: 当前根路径+静态资源名
 # 静态资源映射的是 /**
 # 请求进来,先去找Controller看能否处理,不能处理的所有请求又都交给静态资源处理器.静态资源又会去上述目录找,如果能找到则返回,如果找不到则报404
@@ -9,24 +9,35 @@
 #  mvc:
 #    static-path-pattern: /res/**
 #在当前项目 + static-path-pattern + 静态资源名 = 静态资源文件夹 下找静态资源
-#注意: 源码里欢迎页是写死的路径,即org.springframework.boot.autoconfigure.web.servlet.WelcomePageHandlerMapping.WelcomePageHandlerMapping
+#注意: 欢迎页(welcome page)功能在源码是写死的路径,即org.springframework.boot.autoconfigure.web.servlet.WelcomePageHandlerMapping.WelcomePageHandlerMapping
+#if (welcomePage.isPresent() && "/**".equals(staticPathPattern)) {
+#   logger.info("Adding welcome page: " + welcomePage.get());
+#   setRootViewName("forward:index.html");
+#}
 #要做两个判断
 #1. welcomePage.isPresent() 欢迎页是否存在,这里idea会有bug,需要在修改index位置后用maven重新编译才会生效
 #2. "/**".equals(staticPathPattern),判断staticPathPattern是否是/**
-# 结论:
-#1. 要使用欢迎页功能,必须是/**
-#2. 如果非要自定义静态变量的前缀，访问静态资源是 当前项目 + static-path-pattern + 静态资源名 = 静态资源文件夹下找
+#因此:
+#1. 要使用欢迎页功能,staticPathPattern必须是/**
+#2. 如果非要自定义静态变量的前缀，访问静态资源是 当前项目 + static-path-pattern + 静态资源名 = 静态资源文件夹下找,这个时候welcome page功能失效
 
 spring:
   mvc:
-#    static-path-pattern: /**
+#    static-path-pattern: /res/**
     hiddenmethod:
       filter:
         enabled: true  #配置成false会禁用所有静态资源
 
-  #默认的静态资源路径
+  # 这么改的话,static-locations会替换掉springboot默认的四个静态资源路径
+  # 但是从实际上看来,如果从其它包引入了静态路径依赖的话,比如webjars, 那么访问META-INF/resources下的静态资源还是会被引入,而且:
+  # 1. 访问webjars的时候无论是否添加static-path-pattern都可以访问
+      #http://localhost:8080/res/webjars/jquery/3.5.1/jquery.js
+      #http://localhost:8080/webjars/jquery/3.5.1/jquery.js
+  # 2. 访问META-INF/resources下的资源则必须添加static-path-pattern才可以访问
+      #localhost:8080/res/aaaaa.jpg
+  # 这里测试需要用maven clean,不然会有缓存,导致测试结果不准确
   resources:
-    static-locations: [classpath:/haha/]
+#    static-locations: [classpath:/hehe/]
     add-mappings: true
     cache:
       period: 11000
