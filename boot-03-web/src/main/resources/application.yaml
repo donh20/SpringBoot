@@ -26,7 +26,9 @@ spring:
 #    static-path-pattern: /res/**
     hiddenmethod:
       filter:
-        enabled: true  #配置成false会禁用所有静态资源
+        # org.springframework.boot.web.servlet.filter.OrderedHiddenHttpMethodFilter
+        enabled: true #手动开启,否则是false
+
 
   # 这么改的话,static-locations会替换掉springboot默认的四个静态资源路径
   # 但是从实际上看来,如果从其它包引入了静态路径依赖的话,比如webjars, 那么访问META-INF/resources下的静态资源还是会被引入,而且:
@@ -37,8 +39,9 @@ spring:
       #localhost:8080/res/aaaaa.jpg
   # 这里测试需要用maven clean,不然会有缓存,导致测试结果不准确
   resources:
-#    static-locations: [classpath:/hehe/]
-    add-mappings: true
+    static-locations: [classpath:/haha/]
+    add-mappings: true # false 禁用一切静态资源
+    #org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration.WebMvcAutoConfigurationAdapter.addResourceHandlers
     cache:
       period: 11000
 
