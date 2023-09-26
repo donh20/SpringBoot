@@ -1,7 +1,11 @@
 package com.ncamc.boot.config;
 
+import com.ncamc.boot.bean.Pet;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.convert.converter.Converter;
+import org.springframework.format.FormatterRegistry;
+import org.springframework.util.StringUtils;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -18,6 +22,10 @@ public class WebConfig /*implements WebMvcConfigurer*/ {
         return hiddenHttpMethodFilter;
     }
 
+
+
+
+
 //    @Override
 //    public void configurePathMatch(PathMatchConfigurer configurer) {
 //        UrlPathHelper urlPathHelper = new UrlPathHelper();
@@ -26,9 +34,11 @@ public class WebConfig /*implements WebMvcConfigurer*/ {
 //        configurer.setUrlPathHelper(urlPathHelper);
 //    }
 
+    //1、WebMvcConfigurer定制化SpringMVC的功能
     //接口类从Java8开始有默认的实现,因此只要重写我们关注的方法就可以了
     @Bean
     public WebMvcConfigurer webMvcConfigurer(){
+
         return new WebMvcConfigurer() {
             @Override
             public void configurePathMatch(PathMatchConfigurer configurer) {
@@ -37,6 +47,22 @@ public class WebConfig /*implements WebMvcConfigurer*/ {
                 urlPathHelper.setRemoveSemicolonContent(false);
                 configurer.setUrlPathHelper(urlPathHelper);
                 //WebMvcConfigurer.super.configurePathMatch(configurer);
+            }
+            @Override
+            public void addFormatters(FormatterRegistry registry) {
+                registry.addConverter(new Converter<String, Pet>() {
+                    @Override
+                    public Pet convert(String source) {
+                        // 阿猫,3
+                        if (!StringUtils.isEmpty(source)) {
+                            String[] split = source.split(",");
+                            Pet pet = new Pet(split[0], Integer.parseInt(split[1]));
+                            return pet;
+                        }
+                        return null;
+                    }
+                });
+
             }
         };
     }
