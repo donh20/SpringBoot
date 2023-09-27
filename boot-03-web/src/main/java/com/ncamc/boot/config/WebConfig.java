@@ -34,8 +34,7 @@ public class WebConfig /*implements WebMvcConfigurer*/ {
 //        configurer.setUrlPathHelper(urlPathHelper);
 //    }
 
-    //1、WebMvcConfigurer定制化SpringMVC的功能
-    //接口类从Java8开始有默认的实现,因此只要重写我们关注的方法就可以了
+
     @Bean
     public WebMvcConfigurer webMvcConfigurer(){
 
@@ -48,21 +47,33 @@ public class WebConfig /*implements WebMvcConfigurer*/ {
                 configurer.setUrlPathHelper(urlPathHelper);
                 //WebMvcConfigurer.super.configurePathMatch(configurer);
             }
+
+            /**
+             * 1、WebMvcConfigurer定制化SpringMVC的功能
+             * 接口类从Java8开始有默认的实现,因此只要重写我们关注的方法就可以了
+             *
+             * 观察WebMvcConfigurer里有addFormatters接口，尝试重写
+             * @param registry
+             */
             @Override
             public void addFormatters(FormatterRegistry registry) {
+                //观察Converter接口里有addConverter(Converter<?, ?> converter);
+                //实现source到target类型的转换即可
                 registry.addConverter(new Converter<String, Pet>() {
                     @Override
                     public Pet convert(String source) {
-                        // 阿猫,3
+
                         if (!StringUtils.isEmpty(source)) {
+
                             String[] split = source.split(",");
-                            Pet pet = new Pet(split[0], Integer.parseInt(split[1]));
+                            Pet pet = new Pet(split[0],Integer.parseInt(split[1]));
                             return pet;
+                        } else {
+                            return null;
                         }
-                        return null;
+
                     }
                 });
-
             }
         };
     }

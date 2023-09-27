@@ -9,16 +9,12 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * 参数解析测试
  * 几种常见的注解测试
  *
  */
 @RestController
 public class ParameterTestController {
-
-    @PostMapping("/saveuser")
-    public Person saveuser(Person person){
-        return person;
-    }
 
     @GetMapping("/car/{id}/owner/{username}")
     public Map<String, Object> getCar(@PathVariable("id") Integer id,
@@ -53,5 +49,11 @@ public class ParameterTestController {
         HashMap<String, Object> map = new HashMap<>();
         map.put("content", content);
         return map;
+    }
+
+
+    @PostMapping("/saveuser")
+    public Person saveuser(Person person){
+        return person;
     }
 }
