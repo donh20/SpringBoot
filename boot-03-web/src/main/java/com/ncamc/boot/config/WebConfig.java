@@ -1,15 +1,21 @@
 package com.ncamc.boot.config;
 
 import com.ncamc.boot.bean.Pet;
+import org.springframework.boot.autoconfigure.web.servlet.WebMvcProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.format.FormatterRegistry;
+import org.springframework.http.MediaType;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
+import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.util.UrlPathHelper;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Configuration(proxyBeanMethods = false) //容器里放组件没有依赖，所以用false可以快速放
 public class WebConfig /*implements WebMvcConfigurer*/ {
@@ -39,6 +45,19 @@ public class WebConfig /*implements WebMvcConfigurer*/ {
     public WebMvcConfigurer webMvcConfigurer(){
 
         return new WebMvcConfigurer() {
+
+//            @Override
+//            @SuppressWarnings("deprecation")
+//            public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
+//                Map<String, MediaType> mediaTypes = new HashMap<>();
+//                mediaTypes.put("json",MediaType.APPLICATION_JSON);
+//                mediaTypes.put("xml",MediaType.APPLICATION_XML);
+//                mediaTypes.put("ncamc",MediaType.parseMediaType("application/x-ncamc"));
+//                //指定支持解析哪些参数对应的哪些媒体类型
+//
+//
+//            }
+
             @Override
             public void configurePathMatch(PathMatchConfigurer configurer) {
                 UrlPathHelper urlPathHelper = new UrlPathHelper();

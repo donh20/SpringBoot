@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.text.DateFormat;
+import java.text.ParsePosition;
 import java.util.Date;
 
 @Controller
@@ -28,7 +30,8 @@ public class ResponseTestController {
         Person person = new Person();
         person.setUserName("zhangsan");
         person.setAge(18);
-        person.setBirth(new Date("19800101"));
+
+        person.setBirth(new Date());
 
         return person;
     }

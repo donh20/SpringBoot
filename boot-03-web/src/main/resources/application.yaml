@@ -29,7 +29,6 @@ spring:
         # org.springframework.boot.web.servlet.filter.OrderedHiddenHttpMethodFilter
         enabled: true #手动开启,否则是false
 
-
   # 这么改的话,static-locations会替换掉springboot默认的四个静态资源路径
   # 但是从实际上看来,如果从其它包引入了静态路径依赖的话,比如webjars, 那么访问META-INF/resources下的静态资源还是会被引入,而且:
   # 1. 访问webjars的时候无论是否添加static-path-pattern都可以访问
@@ -37,6 +36,9 @@ spring:
       #http://localhost:8080/webjars/jquery/3.5.1/jquery.js
   # 2. 访问META-INF/resources下的资源则必须添加static-path-pattern才可以访问
       #localhost:8080/res/aaaaa.jpg
+
+    contentnegotiation:
+      favor-parameter: true #开启请求参数内容协商 # 前提条件是要在项目里引入jackson-dataformat-xml
   # 这里测试需要用maven clean,不然会有缓存,导致测试结果不准确
   resources:
     static-locations: [classpath:/haha/]
