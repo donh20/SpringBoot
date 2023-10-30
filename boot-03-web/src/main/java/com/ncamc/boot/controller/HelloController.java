@@ -2,7 +2,9 @@ package com.ncamc.boot.controller;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
+/*
+1. 请求映射解析测试
+ */
 @RestController
 public class HelloController {
 

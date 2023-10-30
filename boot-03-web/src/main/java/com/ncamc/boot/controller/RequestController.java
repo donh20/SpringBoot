@@ -10,11 +10,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-/**
- * 测试取出请求域中的数据,必须要转发请求,而不能重定向
- * 转发才能共享response域和request域,重定向不行
+/*
+2. 请求解析测试
+测试取出请求域中的数据,必须要转发请求,而不能重定向
+转发才能共享response域和request域,重定向不行
  */
+
 @Controller
 public class RequestController {
 

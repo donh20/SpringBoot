@@ -71,7 +71,7 @@ public class WebConfig /*implements WebMvcConfigurer*/ {
             }
 
             /**
-             * SpringMVC的任何东西都可以在webMvcConfigurer里修改:
+             * SpringMVC的任何东西都可以在org.springframework.web.servlet.config.annotation.WebMvcConfigurer里修改:
              * 接口里与MessageConverter有关的接口有两个
              * 1. configureMessageConverters
              * 2. extendMessageConverters

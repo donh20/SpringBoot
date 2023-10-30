@@ -8,10 +8,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * 参数解析测试
- * 几种常见的注解测试
- *
+/*
+3. 参数解析测试
+几种常见的注解测试
+自定义类型参数
  */
 @RestController
 public class ParameterTestController {
