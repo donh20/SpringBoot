@@ -1,6 +1,7 @@
 package com.ncamc.admin.controller;
 
 import com.ncamc.admin.bean.User;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpSession;
 
+@Slf4j
 @Controller
 public class IndexController {
 
@@ -46,6 +48,7 @@ public class IndexController {
     @GetMapping("/index")
     public String mainPage(){
 
+        log.info("当前方法是:{}","mainPage");
         return "index";
     }
 }
