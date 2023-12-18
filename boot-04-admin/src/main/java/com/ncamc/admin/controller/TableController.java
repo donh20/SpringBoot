@@ -1,6 +1,7 @@
 package com.ncamc.admin.controller;
 
 import com.ncamc.admin.bean.User;
+import com.ncamc.admin.exception.UserTooManyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +25,9 @@ public class TableController {
                 new User("hehe", "bbbbb"));
         model.addAttribute("users", users);
         //model.addAttribute(users);
+        if(users.size()>3){
+            throw new UserTooManyException();
+        }
         return "table/dynamic_table";
     }
 
