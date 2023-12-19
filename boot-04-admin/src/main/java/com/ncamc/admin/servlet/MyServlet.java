@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/my") //直接响应，没有经过spring的拦截器，filter同理
+//@WebServlet(urlPatterns = "/my") //直接响应，没有经过spring的拦截器，filter同理
 public class MyServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

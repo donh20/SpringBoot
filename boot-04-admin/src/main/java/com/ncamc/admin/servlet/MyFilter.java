@@ -7,7 +7,7 @@ import javax.servlet.annotation.WebFilter;
 import java.io.IOException;
 
 @Slf4j
-@WebFilter(urlPatterns = {"/css/*","/images/*"})
+//@WebFilter(urlPatterns = {"/css/*","/images/*"})
 public class MyFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
