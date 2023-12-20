@@ -5,6 +5,16 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+/**
+ * 1. MyServlet
+ * 2. DispatcherServlet
+ *
+ * DispatcherServlet是如何配置进来的?
+ * DispatcherServletAutoConfiguration里直接往容器里放了一个dispatcherServlet,还放了一个DispatcherServletRegistrationBean
+ * 观察发现,DispatcherServletRegistrationBean就是一个ServletRegistrationBean
+ * public class DispatcherServletRegistrationBean extends ServletRegistrationBean<DispatcherServlet>
+ * 通过ServletRegistrationBean<DispatcherServlet>把dispatcherServlet配置进来
+ */
 @Configuration
 public class AdminWebConfig implements WebMvcConfigurer {
     @Override
