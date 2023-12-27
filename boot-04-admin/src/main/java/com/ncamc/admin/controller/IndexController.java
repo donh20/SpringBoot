@@ -2,17 +2,30 @@ package com.ncamc.admin.controller;
 
 import com.ncamc.admin.bean.User;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 
 @Slf4j
 @Controller
 public class IndexController {
+
+    @Autowired
+    JdbcTemplate jdbcTemplate;
+    @ResponseBody
+    @GetMapping("/sql")
+    public String queryFromDB() {
+        Long aLong = jdbcTemplate.queryForObject("select count(*) from project", Long.class);
+        log.info("记录总数{}",aLong);
+        return aLong.toString();
+    }
 
     @GetMapping(value = {"/", "/login"})
     public String loginPage(){
