@@ -7,9 +7,30 @@ spring:
 #    username: root
 #    password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
+
+
     druid:
-      filters: stat,wall
-      max-active: 100
+      stat-view-servlet:                #监控页配置
+        enabled: true
+        login-username: admin
+        login-password: admin
+        resetEnable: false
+      web-stat-filter:                  #web监控
+        enabled: true
+        urlPattern: /*
+        exclusions: '*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*'
+      aop-patterns: com.ncamc.admin.*   #项目监控
+      filters: stat,wall,slf4j          #所有开启的功能
+      filter:
+        stat: #sql监控
+          slow-sql-millis: 1000
+          logSlowSql: true
+          enabled: true
+        wall: #防火墙
+          enabled: true
+          config:
+            drop-table-allow: false
+
   jdbc:
     template:
       query-timeout: 3

@@ -14,9 +14,11 @@ import javax.sql.DataSource;
 import java.sql.SQLException;
 import java.util.Arrays;
 
-@Configuration
+@Deprecated
+//改为使用场景启动器
+//@Configuration
 public class MyDataSourceConfig {
-    @Bean
+//    @Bean
     @ConfigurationProperties("spring.datasource")
     public DataSource dataSource() throws SQLException {
         DruidDataSource druidDataSource = new DruidDataSource();
@@ -30,7 +32,7 @@ public class MyDataSourceConfig {
      * 配置druid的监控页功能,以前在web.xml配置的内容，改为在这里配置
      * @return
      */
-    @Bean
+//    @Bean
     public ServletRegistrationBean StatViewServlet(){
         StatViewServlet statViewServlet = new StatViewServlet();
         ServletRegistrationBean<StatViewServlet> registrationBean = new ServletRegistrationBean<>(statViewServlet, "/druid/*");
@@ -43,7 +45,7 @@ public class MyDataSourceConfig {
     /**
      * WebStatFilter 用于采集web-jdbc关联监控的数据。
      */
-    @Bean
+//    @Bean
     public FilterRegistrationBean webStatFilter(){
         WebStatFilter webStatFilter = new WebStatFilter();
         FilterRegistrationBean<WebStatFilter> filterRegistrationBean = new FilterRegistrationBean<>(webStatFilter);
