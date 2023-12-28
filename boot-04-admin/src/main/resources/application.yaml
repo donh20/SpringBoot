@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://10.10.3.106:3306/ia
+    url: jdbc:mysql://10.10.3.106:3306/x_account
     username: root
     password: mysql
 #    url: jdbc:mysql://localhost:3306/ssm

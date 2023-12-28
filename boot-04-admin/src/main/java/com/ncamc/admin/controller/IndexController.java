@@ -24,6 +24,7 @@ public class IndexController {
 
     @Autowired
     AccountService accountService;
+    @ResponseBody
     @GetMapping("/acct")
     public Accounts getById(Long id){
         return accountService.getAcctById(id);
