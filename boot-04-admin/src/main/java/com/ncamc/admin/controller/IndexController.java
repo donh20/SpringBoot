@@ -1,8 +1,10 @@
 package com.ncamc.admin.controller;
 
 import com.ncamc.admin.bean.Accounts;
+import com.ncamc.admin.bean.City;
 import com.ncamc.admin.bean.User;
 import com.ncamc.admin.service.AccountService;
+import com.ncamc.admin.service.CityService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -11,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
@@ -24,6 +27,21 @@ public class IndexController {
 
     @Autowired
     AccountService accountService;
+
+    @Autowired
+    CityService cityService;
+
+    @ResponseBody
+    @PostMapping("/city")
+    public City saveCity(City city){
+        cityService.saveCity(city);
+        return city;
+    }
+    @ResponseBody
+    @GetMapping("/city")
+    public City getCityById(@RequestParam("id") Long id){
+        return cityService.getById(id);
+    }
     @ResponseBody
     @GetMapping("/acct")
     public Accounts getById(Long id){

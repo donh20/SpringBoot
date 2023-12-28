@@ -26,6 +26,8 @@ public class AdminWebConfig implements WebMvcConfigurer {
                         "/css/**",
                         "/fonts/**",
                         "/images/**",
-                        "/js/**");
+                        "/js/**",
+                        "/city",
+                        "/sql");
     }
 }

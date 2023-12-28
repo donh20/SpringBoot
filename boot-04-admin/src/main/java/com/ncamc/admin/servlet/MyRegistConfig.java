@@ -24,7 +24,7 @@ public class MyRegistConfig {
         MyFilter myFilter = new MyFilter();
 //        return new FilterRegistrationBean(myFilter,myServlet());
         FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean(myFilter);
-        filterRegistrationBean.setUrlPatterns(Arrays.asList("/my3","/my4","/my","/css/*"));
+        filterRegistrationBean.setUrlPatterns(Arrays.asList("/my3","/my4","/my"));
         return filterRegistrationBean;
     }
 

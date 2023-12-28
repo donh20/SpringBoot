@@ -34,5 +34,6 @@ spring:
     template:
       query-timeout: 3
 mybatis:
-  config-location: classpath:mybatis/mybatis-config.xml
   mapper-locations: classpath:mybatis/mapper/*.xml
+  configuration: #替换掉mybatis全局配置文件
+    map-underscore-to-camel-case: true
