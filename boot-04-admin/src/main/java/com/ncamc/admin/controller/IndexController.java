@@ -1,6 +1,8 @@
 package com.ncamc.admin.controller;
 
+import com.ncamc.admin.bean.Accounts;
 import com.ncamc.admin.bean.User;
+import com.ncamc.admin.service.AccountService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -19,6 +21,13 @@ public class IndexController {
 
     @Autowired
     JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    AccountService accountService;
+    @GetMapping("/acct")
+    public Accounts getById(Long id){
+        return accountService.getAcctById(id);
+    }
     @ResponseBody
     @GetMapping("/sql")
     public String queryFromDB() {
