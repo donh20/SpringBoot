@@ -6,6 +6,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -28,6 +30,8 @@ class Boot04AdminApplicationTests {
     @Autowired
     StringRedisTemplate redisTemplate;
 
+    @Autowired
+    RedisConnectionFactory redisConnectionFactory;
     @Test
     void contextLoads() {
         Long aLong = jdbcTemplate.queryForObject("select count(*) from projects", Long.class);
@@ -46,6 +50,8 @@ class Boot04AdminApplicationTests {
     void testRedis(){
         ValueOperations<String, String> operations = redisTemplate.opsForValue();
         operations.set("hello","hello");
+
+        System.out.println(redisConnectionFactory.getClass());
     }
 
 }
