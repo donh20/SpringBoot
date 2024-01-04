@@ -6,6 +6,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
@@ -22,6 +24,10 @@ class Boot04AdminApplicationTests {
 
     @Autowired
     UserMapper userMapper;
+
+    @Autowired
+    StringRedisTemplate redisTemplate;
+
     @Test
     void contextLoads() {
         Long aLong = jdbcTemplate.queryForObject("select count(*) from projects", Long.class);
@@ -35,4 +41,11 @@ class Boot04AdminApplicationTests {
         User user = userMapper.selectById(1L);
         log.info("用户信息:{}",user);
     }
+
+    @Test
+    void testRedis(){
+        ValueOperations<String, String> operations = redisTemplate.opsForValue();
+        operations.set("hello","hello");
+    }
+
 }

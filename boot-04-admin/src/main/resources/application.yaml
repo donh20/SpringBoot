@@ -30,10 +30,17 @@ spring:
           enabled: true
           config:
             drop-table-allow: false
+
+
   jdbc:
     template:
       query-timeout: 3
-mybatis:
-  mapper-locations: classpath:mybatis/mapper/*.xml
-  configuration: #替换掉mybatis全局配置文件
-    map-underscore-to-camel-case: true
+  redis:
+    host: 10.3.3.115
+    port: 6379
+
+#使用MyBatisPlus则下面的规则失效
+#mybatis:
+#  mapper-locations: classpath:mybatis/mapper/*.xml
+#  configuration: #替换掉mybatis全局配置文件
+#    map-underscore-to-camel-case: true
