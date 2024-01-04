@@ -35,15 +35,12 @@ spring:
   jdbc:
     template:
       query-timeout: 3
+
   redis:
-    host: 10.3.3.115
-    port: 6379
-    #默认是
-    client-type: jedis #默认是lettuce
-    jedis:
-      pool:
-        max-active: 10
-        min-idle: 5
+    host: redis-tri148cigux2-svc.redis-tri148cigux2-hb.jvessel2.jdcloud.com
+    port: 5000
+    #默认是lettuce
+    password: ABC123abc
 
 #使用MyBatisPlus则下面的规则失效
 #mybatis:
