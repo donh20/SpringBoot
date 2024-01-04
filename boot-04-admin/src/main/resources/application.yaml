@@ -37,9 +37,11 @@ spring:
       query-timeout: 3
 
   redis:
-    host: redis-tri148cigux2-svc.redis-tri148cigux2-hb.jvessel2.jdcloud.com
-    port: 5000
+    host: r-2ze16uu8lxxxgll5zbpd.redis.rds.aliyuncs.com
+    port: 6379
     #默认是lettuce
+    #JedisConnectionConfiguration中条件判断,若这里的client-type为jedis则生效
+    client-type: jedis
     password: ABC123abc
 
 #使用MyBatisPlus则下面的规则失效

@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 public class RedisUrlCountInterceptor implements HandlerInterceptor {
 
     @Autowired
-    RedisTemplate redisTemplate;
+    StringRedisTemplate redisTemplate;
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String uri = request.getRequestURI();

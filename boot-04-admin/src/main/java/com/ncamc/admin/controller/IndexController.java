@@ -7,6 +7,8 @@ import com.ncamc.admin.service.AccountService;
 import com.ncamc.admin.service.CityService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,6 +32,9 @@ public class IndexController {
 
     @Autowired
     CityService cityService;
+
+    @Autowired
+    StringRedisTemplate redisTemplate;
 
     @ResponseBody
     @PostMapping("/city")
@@ -87,9 +92,16 @@ public class IndexController {
      * @return
      */
     @GetMapping("/index")
-    public String mainPage(){
+    public String mainPage(Model model){
 
         log.info("当前方法是:{}","mainPage");
+        ValueOperations<String, String> opsForValue = redisTemplate.opsForValue();
+        String index = opsForValue.get("/index");
+        String sql = opsForValue.get("/sql");
+
+        model.addAttribute("index",index);
+        model.addAttribute("sql",sql);
+
         return "index";
     }
 }

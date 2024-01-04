@@ -51,6 +51,8 @@ class Boot04AdminApplicationTests {
         ValueOperations<String, String> operations = redisTemplate.opsForValue();
         operations.set("hello","hello");
 
+        String hello = operations.get("hello");
+        System.out.println(hello);
         System.out.println(redisConnectionFactory.getClass());
     }
 
