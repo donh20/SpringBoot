@@ -20,15 +20,12 @@ public class TestingAStackDemo {
 
     Stack<Object> stack;
 
-
-
     @ParameterizedTest
     @DisplayName("参数化测试")
     @ValueSource(ints = {1,2,3,4,5})
     void testParameterized(int i){
         System.out.println(i);
     }
-
 
     @ParameterizedTest
     @DisplayName("参数化测试")
@@ -37,9 +34,8 @@ public class TestingAStackDemo {
         System.out.println(i);
     }
 
-
     static Stream<String> stringProvider() {
-        return Stream.of("apple", "banana","atguigu");
+        return Stream.of("apple", "banana","tea");
     }
 
     @Test
