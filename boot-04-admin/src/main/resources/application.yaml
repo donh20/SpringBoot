@@ -49,3 +49,21 @@ spring:
 #  mapper-locations: classpath:mybatis/mapper/*.xml
 #  configuration: #替换掉mybatis全局配置文件
 #    map-underscore-to-camel-case: true
+
+#与监控有关的配置都以management开头
+management:
+  endpoints:
+    enabled-by-default: false  #默认开启所有监控端点  true
+    web:
+      exposure:
+        include: '*' # 以web方式暴露所有端点
+  endpoint:
+    health:
+      show-details: always
+      enabled: true
+    info:
+      enabled: true
+    beans:
+      enabled: true
+    metrics:
+      enabled: true

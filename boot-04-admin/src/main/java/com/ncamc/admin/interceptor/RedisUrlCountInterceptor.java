@@ -10,11 +10,11 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-@Component
+//关掉redis相关的配置
+//@Component
 public class RedisUrlCountInterceptor implements HandlerInterceptor {
 
-    @Autowired
+//    @Autowired
     StringRedisTemplate redisTemplate;
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {

@@ -25,7 +25,7 @@ public class AdminWebConfig implements WebMvcConfigurer {
      * 1. Filter是Servlet原生的组件，可以脱离Spring使用，进行拦截的时候可以独立使用
      * 2. Interceptor是Spring定义的接口，可以使用Spring的自动装配功能
      */
-    @Autowired
+//    @Autowired
     RedisUrlCountInterceptor redisUrlCountInterceptor;
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
@@ -37,13 +37,13 @@ public class AdminWebConfig implements WebMvcConfigurer {
                         "/fonts/**",
                         "/images/**",
                         "/js/**");
-        registry.addInterceptor(redisUrlCountInterceptor)
-                .addPathPatterns("/**") //所有的请求都会被拦截,排除静态资源
-                .excludePathPatterns("/login", "/index", "/", "/templates/error",
-                        //放行的请求
-                        "/css/**",
-                        "/fonts/**",
-                        "/images/**",
-                        "/js/**");
+//        registry.addInterceptor(redisUrlCountInterceptor)
+//                .addPathPatterns("/**") //所有的请求都会被拦截,排除静态资源
+//                .excludePathPatterns("/login", "/index", "/", "/templates/error",
+//                        //放行的请求
+//                        "/css/**",
+//                        "/fonts/**",
+//                        "/images/**",
+//                        "/js/**");
     }
 }

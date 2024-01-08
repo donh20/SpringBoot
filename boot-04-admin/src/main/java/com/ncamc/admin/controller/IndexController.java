@@ -33,7 +33,7 @@ public class IndexController {
     @Autowired
     CityService cityService;
 
-    @Autowired
+//    @Autowired
     StringRedisTemplate redisTemplate;
 
     @ResponseBody
