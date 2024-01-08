@@ -1,4 +1,4 @@
-package com.ncamc.admin.health;
+package com.ncamc.admin.actuator.health;
 
 import org.springframework.boot.actuate.health.AbstractHealthIndicator;
 import org.springframework.boot.actuate.health.Health;
