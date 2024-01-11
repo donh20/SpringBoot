@@ -14,7 +14,7 @@ public class MyHealthIndicator extends AbstractHealthIndicator {
     protected void doHealthCheck(Health.Builder builder) throws Exception {
         //获取连接进行测试
         Map<String,Object> map = new HashMap<>();
-        if(1 == 2) {
+        if(2 == 2) {
 //            builder.up(); //健康
             builder.status(Status.UP);
             map.put("count",1);

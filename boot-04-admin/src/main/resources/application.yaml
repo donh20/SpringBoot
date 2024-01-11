@@ -1,11 +1,11 @@
 spring:
   datasource:
-#    url: jdbc:mysql://10.10.3.106:3306/x_account
-#    username: root
-#    password: mysql
-    url: jdbc:mysql://localhost:3306/ssm
+    url: jdbc:mysql://10.10.3.106:3306/x_account
     username: root
-    password: 123456
+    password: mysql
+#    url: jdbc:mysql://localhost:3306/ssm
+#    username: root
+#    password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
 
 
@@ -30,12 +30,6 @@ spring:
           enabled: true
           config:
             drop-table-allow: false
-
-
-  jdbc:
-    template:
-      query-timeout: 3
-
   redis:
     host: r-2zex2z3sje260hmeqqpd.redis.rds.aliyuncs.com
     port: 5000
@@ -43,6 +37,21 @@ spring:
     #JedisConnectionConfiguration中条件判断,若这里的client-type为jedis则生效
     client-type: jedis
     password: ABC123abc
+
+  jdbc:
+    template:
+      query-timeout: 3
+  boot:
+    admin:
+      client:
+        url: http://localhost:8888
+        instance:
+          prefer-ip: true
+  application:
+    name: boot-04-admin
+
+
+
 
 #使用MyBatisPlus则下面的规则失效
 #mybatis:
@@ -53,7 +62,7 @@ spring:
 #与监控有关的配置都以management开头
 management:
   endpoints:
-    enabled-by-default: false  #默认开启所有监控端点  true
+    enabled-by-default: true  #默认开启所有监控端点  true
     web:
       exposure:
         include: '*' # 以web方式暴露所有端点
@@ -75,5 +84,4 @@ info:
   appVersion: 1.0.0
   mavenProjectName: @project.artifactId@
   mavenProjectVersion: @project.version@
-
 
