@@ -8,11 +8,9 @@
         <version>2.3.4.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.atguigu</groupId>
-    <artifactId>boot-09-features-profile</artifactId>
+    <groupId>com.ncamc</groupId>
+    <artifactId>boot-06-profile</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>boot-09-features-profile</name>
-    <description>Demo project for Spring Boot</description>
 
     <properties>
         <java.version>1.8</java.version>

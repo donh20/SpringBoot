@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloController {
 
-
     @Value("${person.name:李四}")
     private String name;
 
@@ -21,6 +20,11 @@ public class HelloController {
     public String hello(){
 
         return person.getClass().toString();
+    }
+
+    @GetMapping("/person")
+    public Person person(){
+        return person;
     }
 
 }

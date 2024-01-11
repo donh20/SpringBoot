@@ -1,6 +1,5 @@
 person:
   name: prod-张三
-  age: 18
 
 server:
   port: 8000
