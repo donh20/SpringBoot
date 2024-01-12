@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 public class MyConfig {
 
     /**
-     * 这里启动的话会优先调用，而不是调用starter里的HelloService
+     * 如果放一个helloService类的话，启动的时候会覆盖starter里的HelloService类
      * @return
      */
 //    @Bean
