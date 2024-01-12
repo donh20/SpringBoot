@@ -16,7 +16,7 @@ public class MyConfig {
     }
 
     //在测试环境中往容器放一个green
-    @Profile("test")
+    @Profile("uat")
     @Bean
     public Color green(){
         return new Color("green");

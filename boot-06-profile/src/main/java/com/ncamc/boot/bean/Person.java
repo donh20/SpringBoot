@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 
-public interface Person {
-    String getName();
-    Integer getAge();
+public abstract class Person {
+    String name;
+    Integer age;
 }

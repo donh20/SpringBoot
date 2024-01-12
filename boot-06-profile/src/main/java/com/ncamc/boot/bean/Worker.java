@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 @ConfigurationProperties("person")
 @Data
-public class Worker implements Person {
+public class Worker extends Person {
     private String name;
     private Integer age;
 }

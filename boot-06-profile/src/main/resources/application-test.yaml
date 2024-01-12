@@ -1,5 +1,6 @@
 person:
+  age: 18
   name: test-张三
 
 server:
-  port: 7000
+  port: 8000
